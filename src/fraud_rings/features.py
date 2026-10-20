@@ -133,11 +133,7 @@ def node_features(
     accounts_by_id = accounts.set_index("account_id")
 
     for node in node_list:
-        acc_meta = (
-            accounts_by_id.loc[node]
-            if node in accounts_by_id.index
-            else None
-        )
+        acc_meta = accounts_by_id.loc[node] if node in accounts_by_id.index else None
         created_day = int(acc_meta["created_day"]) if acc_meta is not None else 90
         kyc_level = int(acc_meta["kyc_level"]) if acc_meta is not None else 2
         is_ring = (
@@ -146,9 +142,7 @@ def node_features(
             else 0
         )
         ring_id = (
-            int(acc_meta["ring_id"])
-            if (acc_meta is not None and "ring_id" in acc_meta)
-            else -1
+            int(acc_meta["ring_id"]) if (acc_meta is not None and "ring_id" in acc_meta) else -1
         )
 
         # Graph degrees and amounts

@@ -155,9 +155,7 @@ def run_pipeline(
 
 def main() -> None:
     """CLI entrypoint for running the fraud detection pipeline."""
-    parser = argparse.ArgumentParser(
-        description="Run graph-based fraud ring detection pipeline."
-    )
+    parser = argparse.ArgumentParser(description="Run graph-based fraud ring detection pipeline.")
     parser.add_argument(
         "--accounts",
         type=int,

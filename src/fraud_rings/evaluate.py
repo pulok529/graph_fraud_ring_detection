@@ -110,17 +110,13 @@ def evaluate_community_level(
     precision_at_10 = float(hits / max(1, len(top_comms)))
 
     # 2. Ring recall: Share of true rings with >=50% members in flagged accounts
-    true_rings = [
-        r for r in accounts_df["ring_id"].unique() if int(r) >= 0
-    ]
+    true_rings = [r for r in accounts_df["ring_id"].unique() if int(r) >= 0]
     if len(true_rings) == 0:
         ring_recall = 0.0
     else:
         recalled_rings = 0
         for r_id in true_rings:
-            ring_nodes = set(
-                accounts_df[accounts_df["ring_id"] == r_id]["account_id"].astype(str)
-            )
+            ring_nodes = set(accounts_df[accounts_df["ring_id"] == r_id]["account_id"].astype(str))
             if len(ring_nodes) == 0:
                 continue
             recovered_count = len(ring_nodes & flagged_accounts)

@@ -162,9 +162,7 @@ def simulate(
     transfer_records: list[dict[str, object]] = []
 
     # 3a. Legitimate merchant payments (preferential attachment)
-    all_normal_legit = [
-        r["account_id"] for r in account_records if r["is_ring_member"] == 0
-    ]
+    all_normal_legit = [r["account_id"] for r in account_records if r["is_ring_member"] == 0]
     merchant_weights = rng.exponential(scale=1.0, size=len(merchant_ids))
     merchant_probs = merchant_weights / merchant_weights.sum()
 

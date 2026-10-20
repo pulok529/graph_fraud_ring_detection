@@ -247,8 +247,9 @@ def extract_flagged_clusters(
     by flagged accounts (probability >= threshold) and return its connected
     components, ranked by mean probability.
     """
-    probs = dict(zip(node_preds_df["account_id"].astype(str), node_preds_df["pred_prob"],
-                     strict=False))
+    probs = dict(
+        zip(node_preds_df["account_id"].astype(str), node_preds_df["pred_prob"], strict=False)
+    )
     flagged = [n for n in G.nodes if probs.get(str(n), 0.0) >= threshold]
     sub = G.subgraph(flagged).to_undirected()
 
